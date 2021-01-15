@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Remontyash</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+</head>
+<body>
+    <div class="layout-container">
+        <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="~/img/navBg.jpg">
+                    </div>
+                </div>
+            </li>
+            <li><a class="subheader">Заказы</a></li>
+            <li><a class="waves-effect waves-green" asp-action="Create" asp-controller="Orders">Добавить заказ</a></li>
+            <li><a class="waves-effect waves-green" asp-action="Index" asp-controller="Orders">Просмотреть заказы</a></li>
+
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Справочная информация</a></li>
+            <li><a class="waves-effect waves-green" asp-action="Index" asp-controller="Clients">Клиенты</a></li>
+            <li><a class="waves-effect waves-green" asp-action="Index" asp-controller="Emps">Сотрудники</a></li>
+            <li><a class="waves-effect waves-green" asp-action="Index" asp-controller="Roles">Роли</a></li>
+            <li><a class="waves-effect waves-green" asp-action="Index" asp-controller="TypeJobs">Тип работ</a></li>
+            <li><a class="waves-effect waves-green" asp-action="Index" asp-controller="TypeTechnics">Типы техники</a></li>
+            <li><a class="waves-effect waves-green" asp-action="Index" asp-controller="Users">Пользователи</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="waves-effect waves-red" asp-action="logout" asp-controller="Users"><i class=" Small material-icons">exit_to_app</i>Выход</a></li>
+        </ul>
+        <a  href="#" class="btn-floating btn-large waves-effect waves-light red sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
+        <main role="main">
+            <div class="render-body">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

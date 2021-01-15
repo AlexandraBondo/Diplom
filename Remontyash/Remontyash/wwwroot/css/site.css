@@ -1,0 +1,100 @@
+﻿* {
+    font-family: 'Nunito', sans-serif;
+}
+body {
+    background-color: #f6f6f6;
+    margin: 0px;
+    overflow:hidden;
+    height:100vh;
+    width:100vw;
+    background-color:#eee
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 500;
+}
+main {
+    width: 100%;
+    min-height:100vh;
+    display: flex;
+    align-items: center
+}
+.render-body {
+    min-height: 100vh;
+}
+.user-view{
+    height:150px
+}
+.layout-container {
+    display: flex;
+}
+header, main, footer {
+    padding-left: 300px;
+}
+.field-validation-error {
+    color: #d32f2f!important;
+}
+.page{
+    display:flex;
+    flex-direction:column;
+}
+.title-page {
+    width: 100vw;
+    background: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 30px;
+}
+    .title-page a {
+        width: 48px;
+        height: 48px;
+        margin: 2.8rem 0 1.68rem 0;
+        background-color: #26a69a;
+        border-radius:5px;
+    }
+    .title-page a i {
+        font-size:48px;
+        color:white
+    }
+    .title-page h2 {
+        color: #26a69a;
+        margin-left:30px;
+    }
+
+.body-page {
+    margin-left: 20px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+    .body-page form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        border-radius: 40px;
+        padding: 0px 0px 50px 0px;
+        width:40%;
+    }
+.header-wrapp {
+    width: 100%;
+    height: 80px;
+    border-radius: 40px 40px 0px 0px;
+    margin-bottom: 30px;
+    background: url(../img/navBg.jpg)
+}
+.input-field {
+    width: 300px;
+}
+.submit-btn{
+    text-align:center;
+}
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
+}
