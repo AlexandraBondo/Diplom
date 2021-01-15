@@ -1,0 +1,71 @@
+﻿@model Remontyash.Models.Order
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OrderId" />
+            <div class="input-field">
+                <label asp-for="ClientId" class="control-label"></label>
+                <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
+                <span asp-validation-for="ClientId" class="text-danger"></span>
+            </div>
+            <div class="input-field">
+                <label asp-for="Empid" class="control-label"></label>
+                <select asp-for="Empid" class="form-control" asp-items="ViewBag.Empid"></select>
+                <span asp-validation-for="Empid" class="text-danger"></span>
+            </div>
+            <div class="input-field">
+
+                <select asp-items="ViewBag.TypeTech"></select>
+                <label>Вид техники</label>
+                <span asp-validation-for="TypeJobId" class="text-danger"></span>
+            </div>
+            <div class="input-field">
+                <label asp-for="TypeJobId" class="control-label"></label>
+                <select asp-for="TypeJobId" class="form-control" asp-items="ViewBag.TypeJobId"></select>
+                <span asp-validation-for="TypeJobId" class="text-danger"></span>
+            </div>
+            <div class="input-field">
+                <label asp-for="Accepted" class="control-label"></label>
+                <input asp-for="Accepted" class="form-control" />
+                <span asp-validation-for="Accepted" class="text-danger"></span>
+            </div>
+            <div class="input-field">
+                <label asp-for="Completed" class="control-label"></label>
+                <input asp-for="Completed" class="form-control" />
+                <span asp-validation-for="Completed" class="text-danger"></span>
+            </div>
+            <div class="input-field form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
+                </label>
+            </div>
+            <div class="input-field">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });
+</script>
+}
