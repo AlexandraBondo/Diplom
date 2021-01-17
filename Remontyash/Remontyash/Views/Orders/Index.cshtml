@@ -3,63 +3,109 @@
 @{
     ViewData["Title"] = "Index";
 }
+<div class="page">
+    <div class="title-page">
+        <div class="flex">
+            <a asp-action="Index"><i class="material-icons">keyboard_backspace</i></a>
+            <h2>Просмотр заказов</h2>
+        </div>
+        <a asp-action="Create" title="Создать новый заказ"><i class="material-icons">add_fill</i></a>
+    </div>
+    <div class="body-page">
+        <div class="card-block">
+            @foreach (var item in Model)
+            {
+                if (item.IsCompleted == false)
+                {
+                    <div class="card">
+                        <div class="card-image">
+                            <span class="card-title">@Html.DisplayFor(modelItem => item.TypeJob.Description)</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Заказчик: @Html.DisplayFor(modelItem => item.Client.Fio)</p>
+                            <p>Исполнитель: @Html.DisplayFor(modelItem => item.Emp.Fio)</p>
+                            <p>Дата приёма в работу: @item.Accepted.ToString("dd.MM.yyyy")</p>
+                        </div>
+                        <div class="card-action">
+                            <a asp-action="Edit" asp-route-id="@item.OrderId">Завершить заказ</a> |
+                            <a asp-action="Delete" asp-route-id="@item.OrderId">Удалить</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <hr />
+    <table class="table striped highlight">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TypeJob)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Client)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Emp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Accepted)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Completed)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TypeJob.Description)
+                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Client.Fio)
+                        
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Emp.Fio)
+                        
+                    </td>
+                    <td>
+                        @item.Accepted.ToString("dd.MM.yyyy")
+                    </td>
+                    <td>
+                        @if (item.Completed == null)
+                        {<span>Не завершено</span>}
+                        else
+                        { @Html.DisplayFor(modelItem => item.Completed);
+                    }
 
-<h1>Index</h1>
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<style>
+    .card-block {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap:wrap;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Accepted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Completed)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsCompleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Client)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Emp)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TypeJob)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Accepted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Completed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsCompleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Client.Fio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Emp.Fio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeJob.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        .card-block .card {
+            margin-right: 20px;
+        }
+
+    .card-image {
+        height: 200px;
+        background-color: rebeccapurple;
+    }
+</style>
